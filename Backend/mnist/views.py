@@ -13,29 +13,29 @@ from werkzeug.utils import secure_filename  # 파일 안정성 검사
 
 # Create your views here.
 
-@method_decorator(csrf_exempt)
-def image(request):
-    if request.method == "POST":
-        ImageInformation.objects.create(
-            name=request.POST['name'],
-            number=request.FILES['image_file']
-        )
-        return HTTPResponse("201")
-
-
-@method_decorator(csrf_exempt)
-def image_prediction(request):
-    global image
-
-    if request.method == "POST":
-
-        image_file = request.FILES['image_file']
-        images = ImageInformation.objects.all().order_by("-id")
-        for image in images:
-            if image.number == image_file:
-                result = predict(image)
-                break
-        return render(request, 'test.html', {"image": result})
+# @method_decorator(csrf_exempt)
+# def image(request):
+#     if request.method == "POST":
+#         ImageInformation.objects.create(
+#             name=request.POST['name'],
+#             number=request.FILES['image_file']
+#         )
+#         return HTTPResponse("201")
+#
+#
+# @method_decorator(csrf_exempt)
+# def image_prediction(request):
+#     global image
+#
+#     if request.method == "POST":
+#
+#         image_file = request.FILES['image_file']
+#         images = ImageInformation.objects.all().order_by("-id")
+#         for image in images:
+#             if image.number == image_file:
+#                 result = predict(image)
+#                 break
+#         return render(request, 'test.html', {"image": result})
 
 
 @method_decorator(csrf_exempt)
