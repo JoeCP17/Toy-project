@@ -13,10 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from mnist import views
+
+from Backend import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('test', views.image_prediction)
+    path('image', views.image),
+    path('test', views.image_prediction),
+    path('pred', views.save_predict)
 ]
+if settings.DEBUG:  # 개발 모드일 때만
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
