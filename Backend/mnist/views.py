@@ -1,3 +1,4 @@
+import os
 from http.client import HTTPResponse
 
 import numpy as np
@@ -39,22 +40,16 @@ def image_prediction(request):
 
 @method_decorator(csrf_exempt)
 def save_predict(request):
-    global file_index
     if request.method == "POST":
-        result = ""
         image_file = request.FILES['image_file']
-        # image_file.name = secure_filename(image_file.name)
+        image_file.name = secure_filename(image_file.name)
+        name = len(os.listdir("./media/"))
+        image_file.name = f"{name}.jpg"
         ImageInformation.objects.create(
-            name=request.POST['name'],
+            name=name,
             number=image_file
         )
-        images = ImageInformation.objects.all().order_by("-id")
-        for image in images:
-            if image.number == image_file:
-                result = predict(image.number)
-                print(image.number)
-                print(image_file.name)
-                break
+        result = predict(name)
         return JsonResponse(result, status=200)
 
 
@@ -62,7 +57,7 @@ def predict(image):
     best_score = 0
     index = 0
     model = tf.keras.models.load_model('./mnist/toy.h5')
-    img = tf.keras.preprocessing.image.load_img(f'./media/{image}',
+    img = tf.keras.preprocessing.image.load_img(f'./media/{image}.jpg',
                                                 target_size=(28, 28, 3), color_mode="grayscale")
     img = np.array(img)
     img = img.astype('float32') / 255.
