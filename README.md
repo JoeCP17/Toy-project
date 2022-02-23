@@ -1,9 +1,54 @@
-# Toy-project
+# number analyzer
 
-# 재미있는 숫자 맞추기! (Funny Number)
+Number analyzer is an analyzer that calculates the probability of matching a number image with a number through CNN classification.
 
-### Frontend : 김의빈
+<br> 
 
-### Backend : 김영준
 
-### AI : 임하늘 
+### Tech Stack 
+~~~~~~~~~~~~~~~~
+Frontend : React
+Backend : Django 
+AI : Tensorflow 
+~~~~~~~~~~~~~~~~
+
+
+### Frontend 
+
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+<br> 
+
+### Backend 
+
+<img src="https://img.shields.io/badge/Django-DDE072?style=for-the-badge&logo=Django&logoColor=white">
+
+<br>
+
+### AI 
+
+<img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white">
+
+<br>
+
+### etc 
+
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+<br>
+
+### Initalization
+
+- clone repository 
+
+~~~~~~~~~~~~
+$ git clone 
+
+~~~~~~~~~~~~
+
+
+### Made By City Anyang
+
+|       Frontend      |     Backend       |       AI         |
+| ------------| -----------| ---------------|
+|    김의빈         |    김영준        |                |
