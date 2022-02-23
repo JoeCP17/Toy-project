@@ -1,9 +1,20 @@
-import React from 'react'
-import ImageUpload from './ViewComponent/ImageUpload'
-import './ViewComponent/style.scss'
+import React from "react";
+import "./App.css";
+import { Typography } from "@material-ui/core";
+
+import UploadImages from "./components/upload-images.component";
+
 function App() {
   return (
-      <ImageUpload></ImageUpload>
+    <div className="container">
+      <div className="mg20">
+        <Typography variant="h5">숫자 탐색기</Typography>
+        <Typography variant="h6">이미지를 업로드하세요</Typography>
+      </div>
+
+      <UploadImages />
+      
+    </div>
   );
 }
 
