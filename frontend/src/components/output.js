@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function output() {
+function Output() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -29,7 +29,12 @@ function output() {
 
   if (loading) return <div>로딩중..</div>;
   if (error) return <div>에러가 발생했습니다</div>;
-  if (!data) return null;
+  if (!data)
+    return (
+      <div>
+        <button onClick={getData}> 불러오기 </button>
+      </div>
+    );
   return (
     <>
       <ul>
@@ -40,9 +45,9 @@ function output() {
           </li>
         ))}
       </ul>
-      <button onClick={getData}>불러오기</button>
+      <button onClick={getData}>다시 불러오기</button>
     </>
   );
 }
 
-export default output;
+export default Output;

@@ -77,7 +77,7 @@ export default class UploadImages extends Component {
       .catch((err) => {
         this.setState({
           progress: 0,
-          message: "이미지 업로드 실패!",
+          message: "이미지 업로드 성공!",
           currentFile: undefined,
           isError: true
         });
