@@ -1,19 +1,11 @@
 import React, {useState} from "react";
 import "./App.css";
 import { Typography } from "@material-ui/core";
-
 import UploadImages from "./components/upload-images.component";
-import axios from "axios";
+import result_out from "./components/output"
 
 function App() {
-  const [data, setData] = useState(null);
-  const onClick = () => {
-    axios
-      .post("/pred")
-      .then((response) => {
-        setData(response.data);
-      });
-    };
+
   return (
     <div className="container">
       <div className="mg20">
@@ -22,19 +14,9 @@ function App() {
       </div>
 
       <UploadImages />
-
-      <div>
-        <button onClick={onClick}>불러오기</button>
-      </div>
-      {data && (
-        <textarea
-          rows={7}
-          value={JSON.stringify(data, null, 2)}
-          readOnly={true}
-        />
-      )}
-
+      <result_out />
     </div>
+    
   );
 }
 
