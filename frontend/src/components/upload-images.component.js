@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box, Typography, Button, ListItem, withStyles } from '@material-ui/core';
+import axios from "axios";
 
 import UploadService from "../services/upload-files.service";
 
@@ -77,11 +78,15 @@ export default class UploadImages extends Component {
       .catch((err) => {
         this.setState({
           progress: 0,
-          message: "Could not upload the image!",
+          message: "이미지 업로드 실패!",
           currentFile: undefined,
           isError: true
         });
       });
+  }
+
+  result() {
+
   }
 
   render() {
@@ -147,7 +152,7 @@ export default class UploadImages extends Component {
           </Typography>
         )}
 
-        
+
 
       </div >
     );
