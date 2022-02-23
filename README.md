@@ -42,13 +42,17 @@ AI : Tensorflow
 - clone repository 
 
 ~~~~~~~~~~~~
-$ git clone 
-
+$ git clone https://github.com/JoeCP17/Toy-project.git
+cd toy-project
 ~~~~~~~~~~~~
 
+- Start Project 
+~~~~~~~~~~~~~~~~
+django-admin start project backend
+~~~~~~~~~~~~~~~~~
 
 ### Made By City Anyang
 
-|       Frontend      |     Backend       |       AI         |
+|   💻   Frontend      |  🖥   Backend       |     💿  AI         |
 | ------------| -----------| ---------------|
 |    김의빈         |    김영준        |      임하늘          |
