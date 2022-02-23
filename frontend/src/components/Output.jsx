@@ -17,14 +17,10 @@ function Data() {
     if (error) return <div>에러가 발생했습니다</div>;
     if (!result_data)
         return (
-        <div onClick={refetch}>
-            <button>불러오기</button>
+        <div>
+            <button onClick={refetch}>불러오기</button>
         </div>
-        ).catch((err) => {
-            console.log(err);
-            console.log(err.data);
-        })
-
+        )
      return (
         <ul>
         {result_data.map(result => (
