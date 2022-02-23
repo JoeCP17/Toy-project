@@ -6,7 +6,7 @@ import useAsync from "./useAsync";
 async function getData() {
     const response = await axios.post("/pred");
     return response.data;
-  }
+  } 
 
 
 function Data() {
@@ -20,21 +20,20 @@ function Data() {
         <div onClick={refetch}>
             <button>불러오기</button>
         </div>
-        );
+        ).catch((err) => {
+            console.log(err);
+            console.log(err.data);
+        })
 
      return (
-    <>
-      <div className="result_data">
-        <div className={`box-wrap ${effect}`}>
-          {/* <div className="box2"> */}
-          <ul>
-            {result_data}
-          </ul>
-          {/* </div> */}
-        </div>
-      </div>
-      <button onClick={refetch}>다시 불러오기</button>
-    </>
+        <ul>
+        {result_data.map(result => (
+          <li>
+            {result.index}
+            {result.percent}
+          </li>
+        ))}
+      </ul>
   );
 }
 
