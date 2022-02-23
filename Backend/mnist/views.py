@@ -1,6 +1,4 @@
 import os
-from http.client import HTTPResponse
-
 import numpy as np
 import tensorflow as tf
 from django.http import JsonResponse
@@ -39,9 +37,10 @@ from werkzeug.utils import secure_filename  # 파일 안정성 검사
 
 
 @method_decorator(csrf_exempt)
-def save_predict(request):
+def save_img_predict(request):
     if request.method == "POST":
-        image_file = request.FILES['image_file']
+        image_file = request.FILES.get("file")
+        # print(image_file)
         image_file.name = secure_filename(image_file.name)
         name = len(os.listdir("./media/"))
         image_file.name = f"{name}.jpg"
@@ -50,7 +49,10 @@ def save_predict(request):
             number=image_file
         )
         result = predict(name)
+        print(result)
         return JsonResponse(result, status=200)
+        # return render(request, 'index.html', {"data": result})
+        # return render(request, 'index.html', {"data": {"index": 1, "percent": 1}})
 
 
 def predict(image):

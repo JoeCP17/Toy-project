@@ -15,16 +15,16 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
+from django.views.generic import TemplateView
 from mnist import views
 
 from Backend import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('image', views.image),
-    path('test', views.image_prediction),
-    path('pred', views.save_predict)
+    path('pred', views.save_img_predict),
+    re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]
 if settings.DEBUG:  # 개발 모드일 때만
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
