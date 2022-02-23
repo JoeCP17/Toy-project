@@ -11,11 +11,11 @@ async function getData() {
 
 function Data() {
     const [state, refetch] = useAsync(getData, [], true);
-    const { loading, data: result_data, error } = state;
+    const { loading, data: pred, error } = state;
     const [effect, setEffect] = useState("mount1");
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
-    if (!result_data)
+    if (!pred)
         return (
         <div>
             <button onClick={refetch}>불러오기</button>
@@ -23,7 +23,7 @@ function Data() {
         )
      return (
         <ul>
-        {result_data.map(result => (
+        {pred.map(result => (
           <li>
             {result.index}
             {result.percent}

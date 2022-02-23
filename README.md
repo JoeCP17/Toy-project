@@ -43,8 +43,13 @@ cd toy-project
 ~~~~~~~~~~~~
 
 - Start Project 
+
 ~~~~~~~~~~~~~~~~
-django-admin start project backend
+cd Backend
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver react
 ~~~~~~~~~~~~~~~~~
 
 ### Made By City Anyang

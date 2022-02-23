@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import { Typography } from "@material-ui/core";
+
 import UploadImages from "./components/upload-images.component";
 import Output from "./components/Output";
 
@@ -15,7 +16,7 @@ function App() {
       <UploadImages />
       <Output></Output>
     </div>
-    
+
   );
 }
 
