@@ -16,25 +16,21 @@ AI : Tensorflow
 ### Frontend 
 
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
-
 <br> 
 
 ### Backend 
 
 <img src="https://img.shields.io/badge/Django-DDE072?style=for-the-badge&logo=Django&logoColor=white">
-
 <br>
 
 ### AI 
 
 <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white">
-
 <br>
 
 ### etc 
 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
-
 <br>
 
 ### Initalization
