@@ -9,7 +9,7 @@ function App() {
   const [data, setData] = useState(null);
   const onClick = () => {
     axios
-      .get("localhost/pred")
+      .post("/pred")
       .then((response) => {
         setData(response.data);
       });

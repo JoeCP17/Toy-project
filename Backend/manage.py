@@ -20,7 +20,7 @@ def main():
         BASE_DIR = Path(__file__).resolve().parent
         if sys.argv[2] == 'react':
             # project_root = os.getcwd()
-            os.chdir(os.path.join(BASE_DIR.parent, "Frontend"))
+            os.chdir(os.path.join(BASE_DIR.parent, "frontend"))
             os.system("npm run build")
             os.chdir(BASE_DIR)
             sys.argv.pop(2)
