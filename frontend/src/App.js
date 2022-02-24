@@ -1,11 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./App.css";
 import { Typography } from "@material-ui/core";
-
+import axios from 'axios';
 import UploadImages from "./components/upload-images.component";
-import Output from "./components/Output";
+import UploadService from "./services/upload-files.service";
 
-function App() {
+
+const App = ()  => {
+  const [data, setData] = useState(null);
+  const onClick = ()=>{
+
+    axios.get('https://my-json-server.typicode.com/typicode/demo/db').then(reponse => {
+      setData(reponse.data);
+    });
+  }
 
   return (
     <div className="container">
@@ -14,8 +22,10 @@ function App() {
         <Typography variant="h6">이미지를 업로드하세요</Typography>
       </div>
       <UploadImages />
-      <Output></Output>
+      <button onClick={onClick}>불러오기</button>
+      {data && <textarea rows={1} value={JSON.stringify(data, null, 2)} readOnly={true} />}
     </div>
+    
 
   );
 }

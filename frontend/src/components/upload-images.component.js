@@ -3,6 +3,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box, Typography, Button, ListItem, withStyles } from '@material-ui/core';
 
 import UploadService from "../services/upload-files.service";
+import uploadFilesService from "../services/upload-files.service";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -23,6 +24,7 @@ export default class UploadImages extends Component {
     super(props);
     this.selectFile = this.selectFile.bind(this);
     this.upload = this.upload.bind(this);
+    
 
     this.state = {
       currentFile: undefined,
@@ -35,21 +37,24 @@ export default class UploadImages extends Component {
     };
   }
 
-  componentDidMount() {
-    UploadService.getFiles().then((response) => {
-      this.setState({
-        imageInfos: response.data,
-      });
-    });
-  }
+  // componentDidMount() {
+  //   UploadService.getFiles().then((response) => {
+  //     this.setState({
+  //       imageInfos: response.data,
+  //     });
+  //   }).catch((err)=> {
+  //     console.log(err)
+  //     console.log(err.data)
+  //   })
+  // }
 
-  selectFile(event) {
-    this.setState({
-      currentFile: event.target.files[0],
-      previewImage: URL.createObjectURL(event.target.files[0]),
-      progress: 0,
-      message: ""
-    });
+   selectFile(event) {
+     this.setState({
+       currentFile: event.target.files[0],
+       previewImage: URL.createObjectURL(event.target.files[0]),
+       progress: 0,
+       message: ""
+     });
   }
 
   upload() {
@@ -67,8 +72,17 @@ export default class UploadImages extends Component {
           message: response.data.message,
           isError: false
         });
-        return UploadService.getFiles();
+       
+      }).catch((res) => {
+        console.log(res)
+        console.log(res.data)
       })
+      .then((file) => {
+        this.setState({
+          imageInfos: file.data,
+        });
+      })
+
       .catch((err) => {
         this.setState({
           progress: 0,
@@ -143,8 +157,11 @@ export default class UploadImages extends Component {
           </Typography>
         )}
 
+    <Typography variant="h6" className="list-header">
+              결과 확인
+    </Typography>
 
-
+    <p>{uploadFilesService.upload()}</p>
       </div >
     );
   }
