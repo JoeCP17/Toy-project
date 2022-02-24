@@ -69,11 +69,6 @@ export default class UploadImages extends Component {
         });
         return UploadService.getFiles();
       })
-      .then((files) => {
-        this.setState({
-          imageInfos: files.data,
-        });
-      })
       .catch((err) => {
         this.setState({
           progress: 0,
@@ -84,9 +79,6 @@ export default class UploadImages extends Component {
       });
   }
 
-  result() {
-
-  }
 
   render() {
     const {

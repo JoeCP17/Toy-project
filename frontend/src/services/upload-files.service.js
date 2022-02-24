@@ -16,9 +16,6 @@ class UploadFilesService {
       });
   }
 
-  getFiles() {
-    return http.get("");
-  }
 }
 
 export default new UploadFilesService();
