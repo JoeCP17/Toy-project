@@ -3,7 +3,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Box, Typography, Button, ListItem, withStyles } from '@material-ui/core';
 
 import UploadService from "../services/upload-files.service";
-import uploadFilesService from "../services/upload-files.service";
 
 const BorderLinearProgress = withStyles((theme) => ({
   root: {
@@ -27,8 +26,8 @@ export default class UploadImages extends Component {
     
 
     this.state = {
-      currentFile: undefined,
-      previewImage: undefined,
+      currentFile: "",
+      previewImage: "",
       progress: 0,
 
       message: "",
@@ -37,16 +36,16 @@ export default class UploadImages extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   UploadService.getFiles().then((response) => {
-  //     this.setState({
-  //       imageInfos: response.data,
-  //     });
-  //   }).catch((err)=> {
-  //     console.log(err)
-  //     console.log(err.data)
-  //   })
-  // }
+  componentDidMount() {
+    UploadService.getFiles().then((response) => {
+      this.setState({
+        imageInfos: response.data,
+      });
+    }).catch((err)=> {
+      console.log(err)
+      console.log(err.data)
+    })
+  }
 
    selectFile(event) {
      this.setState({
@@ -69,17 +68,17 @@ export default class UploadImages extends Component {
     })
       .then((response) => {
         this.setState({
-          message: response.data.message,
+          message: response.json().message,
           isError: false
         });
        
       }).catch((res) => {
         console.log(res)
-        console.log(res.data)
+        console.log(res.json())
       })
       .then((file) => {
         this.setState({
-          imageInfos: file.data,
+          imageInfos: file.json(),
         });
       })
 
@@ -161,7 +160,6 @@ export default class UploadImages extends Component {
               결과 확인
     </Typography>
 
-    <p>{uploadFilesService.upload()}</p>
       </div >
     );
   }

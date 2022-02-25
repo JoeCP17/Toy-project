@@ -6,13 +6,15 @@ import UploadImages from "./components/upload-images.component";
 import UploadService from "./services/upload-files.service";
 
 
+
 const App = ()  => {
   const [data, setData] = useState(null);
   const onClick = ()=>{
-
-    axios.get('https://my-json-server.typicode.com/typicode/demo/db').then(reponse => {
-      setData(reponse.data);
-    });
+    axios.post('/pred').then(response => {
+      setData(response.json())
+    }).catch((err) => {
+      console.log("결과에러", err);
+    })
   }
 
   return (

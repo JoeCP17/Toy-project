@@ -1,6 +1,6 @@
 import os
-import numpy as np
-import tensorflow as tf
+# import numpy as np
+# import tensorflow as tf
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -39,7 +39,7 @@ from werkzeug.utils import secure_filename  # 파일 안정성 검사
 @method_decorator(csrf_exempt)
 def save_img_predict(request):
     if request.method == "POST":
-        image_file = request.FILES.get("file")
+        image_file = request.FILES.get("images")
         # print(image_file)
         image_file.name = secure_filename(image_file.name)
         name = len(os.listdir("./media/"))
@@ -48,30 +48,30 @@ def save_img_predict(request):
             name=name,
             number=image_file
         )
-        result = predict(name)
-        print(result)
-        return JsonResponse(result, status=200)
+        # result = predict(name)
+        # print(result)
+        return JsonResponse({"index": 1, "percent": 1}, status=200)
         # return render(request, 'index.html', {"data": result})
-        # return render(request, 'index.html', {"data": {"index": 1, "percent": 1}})
+       #  return render(request, 'index.html', {"index": 1, "percent": 1})
 
 
-def predict(image):
-    best_score = 0
-    index = 0
-    model = tf.keras.models.load_model('./mnist/toy.h5')
-    img = tf.keras.preprocessing.image.load_img(f'./media/{image}.jpg',
-                                                target_size=(28, 28, 3), color_mode="grayscale")
-    img = np.array(img)
-    img = img.astype('float32') / 255.
-    img = np.reshape(img, (1, 28, 28, 1))
-    scores = model.predict(img)
+# def predict(image):
+#     best_score = 0
+#     index = 0
+#     model = tf.keras.models.load_model('./mnist/toy.h5')
+#     img = tf.keras.preprocessing.image.load_img(f'./media/{image}.jpg',
+#                                                 target_size=(28, 28, 3), color_mode="grayscale")
+#     img = np.array(img)
+#     img = img.astype('float32') / 255.
+#     img = np.reshape(img, (1, 28, 28, 1))
+#     scores = model.predict(img)
 
-    for i in range(10):
-        # print(scores[0][i])
-        if best_score < scores[0][i]:
-            best_score = scores[0][i]
-            index = i
-    # print(index)
-    # print(scores[0])
-    result = {'index': index, 'percent': float(best_score)}
-    return result
+#     for i in range(10):
+#         # print(scores[0][i])
+#         if best_score < scores[0][i]:
+#             best_score = scores[0][i]
+#             index = i
+#     # print(index)
+#     # print(scores[0])
+#     result = {'index': index, 'percent': float(best_score)}
+#     return result

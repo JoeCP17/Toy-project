@@ -17,7 +17,7 @@ class UploadFilesService {
   }
 
   getFiles() {
-    return http.post("");
+    return http.post("/pred");
   }
 }
 
